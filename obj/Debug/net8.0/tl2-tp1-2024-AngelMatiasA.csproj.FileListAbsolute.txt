@@ -1,0 +1,15 @@
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\bin\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.exe
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\bin\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.deps.json
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\bin\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.runtimeconfig.json
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\bin\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.dll
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\bin\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.pdb
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.GeneratedMSBuildEditorConfig.editorconfig
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.AssemblyInfoInputs.cache
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.AssemblyInfo.cs
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.csproj.CoreCompileInputs.cache
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.sourcelink.json
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.dll
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\refint\tl2-tp1-2024-AngelMatiasA.dll
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.pdb
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\tl2-tp1-2024-AngelMatiasA.genruntimeconfig.cache
+C:\ReposT24\tl2-tp1-2024-AngelMatiasA\obj\Debug\net8.0\ref\tl2-tp1-2024-AngelMatiasA.dll
