@@ -25,7 +25,7 @@ namespace Cadeteria;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        listadoPedidos = new List<Pedidos>();
+        // listadoPedidos = new List<Pedidos>();
     }
     public Pedidos AltaPedido(string pObs, string cNombre, string cDireccion, string cTel, string cDatRef ){
         pedidoAux = new Pedidos( pObs,  cNombre,  cDireccion,  cTel,  cDatRef);
@@ -40,20 +40,27 @@ namespace Cadeteria;
 
 
     public   Pedidos ObtenerPedidoPorId(int id){
-        pedidoAux = this.listadoPedidos.FirstOrDefault(p => p.Nro == id); 
-
+        pedidoAux = this.listadoPedidos.FirstOrDefault(p => p.Nro == id);
+        if (pedidoAux != null)
+        {
         return pedidoAux;
+            
+        } 
+        return null;
     }
-   public Pedidos RemoverPedido ( int id){
-    pedidoAux = this.listadoPedidos.FirstOrDefault(p => p.Nro == id);
-    if(pedidoAux != null){
-        this.listadoPedidos.Remove(pedidoAux);
+   public Pedidos RemoverPedido ( Pedidos pedidoRemover){
+    if(pedidoRemover != null){
+        this.listadoPedidos.Remove(pedidoRemover);
     }
 
-    return pedidoAux;
+    return pedidoRemover;
    }
-   public void AsignarPedido(Pedidos pedidoAsignar){
+   public Pedidos AsignarPedido(Pedidos pedidoAsignar){
+
+    if(pedidoAsignar != null){
      this.listadoPedidos.Add(pedidoAsignar);
+    }
+    return pedidoAsignar;
      
    }
 
