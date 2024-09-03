@@ -1,6 +1,6 @@
 using System;
 
-namespace Cadeteria;
+namespace SCadeteria;
 public enum Estado{
     EnProceso,
     Entregado,

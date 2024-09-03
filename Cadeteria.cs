@@ -1,16 +1,28 @@
 using System;
 
-namespace Cadeteria;
+namespace SCadeteria;
 
     public class Cadeteria
     {
-        public int ID { get; set;}
+        public int ID { get; }
         public  string Nombre { get; set;}
         public string Direccion{get; set;}
         public List<Cadete> listadoCadetes {get;set;}
 
     public Cadeteria (){
+        ID++;
         listadoCadetes = new List<Cadete>();
+    }
+    public Cadeteria ( string nombre, string Direccion):this()
+    {
+        this.Nombre = nombre;
+        this.Direccion = Direccion;
+    }
+    public Cadeteria (List<Cadete> listaCadetesCsv, string nombre, string Direccion){
+        ID++;
+        this.Nombre = nombre;
+        this.Direccion = Direccion;
+        listadoCadetes =listaCadetesCsv;
     }
         public Cadete AltaCadete ( string nombre, string direccion, string telefono ){
             Cadete nuevoCadete = new Cadete( nombre,  direccion,  telefono );
@@ -28,6 +40,8 @@ namespace Cadeteria;
             }
             return  cadeteAsignar;
         }
+        //primero uso este para chequear si el cadete a asignar existe 
+        // y lo guardo en alguna variable cadete en la clase superior a esta
         public Cadete buscarCadetePorId(int id){
             Cadete cadeteBuscado = this.listadoCadetes.FirstOrDefault(c => c.Id == id);
             if(cadeteBuscado != null){
@@ -35,6 +49,8 @@ namespace Cadeteria;
             }
             return null;
         }
+        // aqui busco el cadete que tenga el pedido. Si no existe el pedido, 
+        // no lo encuentra al cadete y en la clase superior recibo null y hago el control
         public Cadete BuscarCadeteConElPedido(int nroPedido){
             Cadete cadeteBuscado = null;
             Pedidos pedidoBuscado;
@@ -61,6 +77,7 @@ namespace Cadeteria;
         //     }
         //     return null;
         // }
+        //por ultimo utiliso este con el los cadetes obtenidos de los dos metodos anteriores
         public void ReasignarPedido(Cadete cadeteConPedido, int nroPedido, Cadete cadeteAsignar){
             Pedidos pedidoCurrent = cadeteConPedido.ObtenerPedidoPorId(nroPedido);
             cadeteConPedido.RemoverPedido(pedidoCurrent);

@@ -1,6 +1,6 @@
 using System;
 
-namespace Cadeteria;
+namespace SCadeteria;
 
     public class Cadete
     {
