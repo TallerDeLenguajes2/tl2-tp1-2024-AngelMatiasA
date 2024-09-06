@@ -9,18 +9,20 @@ public enum Estado{
 
     public class Pedidos
     {
-       private static int nro; 
+        private static int cantidad = 0;
+       private  int nro; 
        private string observacion;
        private Cliente cliente;
        private Estado estado;
 
 
-    public  int Nro { get => Nro; }
+    public  int Nro { get => nro; }
     public string Observacion { get => observacion; set => observacion = value; }
     public Cliente Cliente { get => cliente; set => cliente = value; }
     public Estado Estado { get => estado; set => estado = value; }
     public Pedidos(){
-        nro++;
+        cantidad ++;
+        this.nro= cantidad;
     }
       public Pedidos(string pObs, string cNombre, string cDireccion, string cTel, string cDatRef ):this()
     {

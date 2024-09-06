@@ -4,7 +4,8 @@ namespace SCadeteria;
 
     public class Cadete
     {
-        private static int id;
+        private static int nro= 0;
+        private int id ;
         private string nombre;
         private string direccion;
         private string telefono;
@@ -17,8 +18,9 @@ namespace SCadeteria;
     public string Telefono { get => telefono; set => telefono = value; }
     public List<Pedidos> ListadoPedidos {get => listadoPedidos; set => listadoPedidos = value;}
     public Cadete()
-    { id ++;
+    { this.id  = nro;
     listadoPedidos = new List<Pedidos>();
+        nro++;
     }
     public Cadete( string nombre, string direccion, string telefono ) :this()
     {

@@ -32,7 +32,7 @@ namespace SCadeteria;
             }
             return  nuevoCadete;
         }
-        public Cadete AltaPedido ( int idCadete, string pObs, string cNombre, string cDireccion, string cTel, string cDatRef){
+        public Cadete AltaPedido ( string pObs, string cNombre, string cDireccion, string cTel, string cDatRef, int idCadete){
             Cadete cadeteAsignar = this.listadoCadetes.FirstOrDefault(p => p.Id == idCadete);
             if (cadeteAsignar !=null)
             {
@@ -83,6 +83,36 @@ namespace SCadeteria;
             cadeteConPedido.RemoverPedido(pedidoCurrent);
             cadeteAsignar.AsignarPedido(pedidoCurrent);
             
+        }
+        public void MostrarCadetes(){
+            foreach (Cadete cadete in this.listadoCadetes)
+            {
+                Console.WriteLine($"Cadete nro: {cadete.Id}");
+                Console.WriteLine($"Nombre: {cadete.Nombre}");
+                Console.WriteLine($"Celular: {cadete.Telefono}");
+                Console.WriteLine($"Direccion: {cadete.Direccion}");
+                
+            }
+        }
+        public void MostrarPedidos(){
+            foreach (Cadete cadete in this.listadoCadetes)
+            {
+                if (cadete.ListadoPedidos.Count > 0)
+                {
+                    foreach (Pedidos pedido in cadete.ListadoPedidos){
+                        Console.WriteLine($"Pedido nro: {pedido.Nro}");
+                        Console.WriteLine($"Estado: {pedido.Estado}");
+                        Console.WriteLine($"Observacion: {pedido.Observacion}");
+                        Console.WriteLine($"Celular del cliente: {pedido.Cliente.Telefono}");
+                        Console.WriteLine($"Nombre de cliente: {pedido.Cliente.Nombre}");
+                        Console.WriteLine($"Direccion: {pedido.Cliente.Direccion}");
+                        Console.WriteLine($"Datos de referencia de direccion: {pedido.Cliente.DatosReferenciaDireccion}");
+
+                    }
+                    
+                }
+                
+            }
         }
 
     }
