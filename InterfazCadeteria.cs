@@ -8,6 +8,7 @@ public class InterfazCadeteria {
     int nroPedido = 0;
     bool fin = false;
     static bool  continuar = true;
+    InformeFinal informe;
     Cadeteria cadeteria;
     AccesoDatos accesoCsv;   
     int opcion = 0;
@@ -29,6 +30,8 @@ public class InterfazCadeteria {
         {
             case 0:
                 fin = true;
+                informe = new InformeFinal(cadeteria);
+                informe.MostrarInforme();
                 break;
             case 1:
                 string [] datosPedidos = ObtenerDatosPedido();
