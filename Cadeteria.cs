@@ -77,12 +77,32 @@ namespace SCadeteria;
         //     }
         //     return null;
         // }
-        //por ultimo utiliso este con el los cadetes obtenidos de los dos metodos anteriores
+        //por ultimo utilizo este con el los cadetes obtenidos de los dos metodos anteriores
         public void ReasignarPedido(Cadete cadeteConPedido, int nroPedido, Cadete cadeteAsignar){
             Pedidos pedidoCurrent = cadeteConPedido.ObtenerPedidoPorId(nroPedido);
             cadeteConPedido.RemoverPedido(pedidoCurrent);
             cadeteAsignar.AsignarPedido(pedidoCurrent);
             
+        }
+        public void CambiarEstado(Pedidos currentPedi, Estado estado){
+           
+                currentPedi.Estado = estado;
+                
+        }
+          public Pedidos BuscarPedido(int nroPedido){
+            Pedidos pedidoBuscado = null;
+            foreach (var cadete in this.listadoCadetes)
+            {
+                 if (cadete.ListadoPedidos.Count > 0){
+                    pedidoBuscado = cadete.ObtenerPedidoPorId(nroPedido);
+                    if (pedidoBuscado != null)
+                    {
+                        
+                        return pedidoBuscado;
+                    }
+                 }
+            }
+            return pedidoBuscado;
         }
         public void MostrarCadetes(){
             foreach (Cadete cadete in this.listadoCadetes)
@@ -99,6 +119,9 @@ namespace SCadeteria;
             {
                 if (cadete.ListadoPedidos.Count > 0)
                 {
+                    Console.WriteLine($"Estos son los pedidos del Cadete");
+                    Console.WriteLine($"Numero: {cadete.Id}");
+                    Console.WriteLine($"Nombre: {cadete.Nombre}");
                     foreach (Pedidos pedido in cadete.ListadoPedidos){
                         Console.WriteLine($"Pedido nro: {pedido.Nro}");
                         Console.WriteLine($"Estado: {pedido.Estado}");

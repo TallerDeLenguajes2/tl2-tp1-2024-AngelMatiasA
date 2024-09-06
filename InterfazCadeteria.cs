@@ -5,7 +5,9 @@ using SCadeteria;
 
 namespace SCadeteria;
 public class InterfazCadeteria {
+    int nroPedido = 0;
     bool fin = false;
+    static bool  continuar = true;
     Cadeteria cadeteria;
     AccesoDatos accesoCsv;   
     int opcion = 0;
@@ -14,7 +16,7 @@ public class InterfazCadeteria {
         do
         {
              Console.WriteLine("ingrese: \n  1) dar de alta pedidos \n " +
-            " 2) reasignarlos a cadetes \n 3) Mostrar Cadetes \n 0)Salir");
+            " 2) reasignarlos a cadetes \n 3) Cambiar Estado \n  4) Mostrar Cadetes \n  5) Mostrar Pedidos \n 0)Salir");
             opcion =  Convert.ToInt32(Console.ReadLine());
             LeerOpciones(opcion);
             
@@ -39,9 +41,8 @@ public class InterfazCadeteria {
                 Console.WriteLine("No se pudo cargar el pedido.");
                 break;
             case 2:
-                bool continuar = true;
                 Cadete cadeteAsignar = null; cadeteConPedido = null;
-                int nroPedido;
+               
                 Pedidos pedido = null;
                 do
                 {
@@ -92,9 +93,45 @@ public class InterfazCadeteria {
                 
                 break;
             case 3:
-                cadeteria.MostrarCadetes();
+              do {
+                    Console.WriteLine("Ingrese el numero del pedido ");
+                    
+                    string input = Console.ReadLine();
+                    if (!Int32.TryParse(input, out nroPedido))
+                    {
+                        Console.WriteLine("No se pudo leer el numero ingresado, por favor intente nuevamente  ");
+                    }
+                    else
+                    {
+                        Pedidos buscado = cadeteria.BuscarPedido( nroPedido);
+                        if(buscado != null){
+                            Console.WriteLine("Ingrese el estado del pedido:");
+                            Console.WriteLine("0 - EnProceso");
+                            Console.WriteLine("1 - Entregado");
+                            Console.WriteLine("2 - Cancelado");
+                            int opcEstado;
+                            while(!int.TryParse(Console.ReadLine(), out opcEstado ) || opcEstado < 0 || opcEstado > 2){
+                                Console.WriteLine("No se encontro el valor de estado ingresado, intente nuevamente");
+                                Console.WriteLine("0 - EnProceso");
+                                Console.WriteLine("1 - Entregado");
+                                Console.WriteLine("2 - Cancelado");
+                            }
+                            Estado nuevoEstado = (Estado)opcEstado;
+                            cadeteria.CambiarEstado(buscado, nuevoEstado );
+                            continuar = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se encontro el pedido, intente nuevamente");
+                        }
+                    }
+                    
+                } while (continuar);
                 break;
             case 4:
+                cadeteria.MostrarCadetes();
+                break;
+            case 5:
                 cadeteria.MostrarPedidos();
                 break;
 

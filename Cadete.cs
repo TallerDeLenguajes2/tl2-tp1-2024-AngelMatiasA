@@ -45,8 +45,7 @@ namespace SCadeteria;
         pedidoAux = this.listadoPedidos.FirstOrDefault(p => p.Nro == id);
         if (pedidoAux != null)
         {
-        return pedidoAux;
-            
+            return pedidoAux;
         } 
         return null;
     }
