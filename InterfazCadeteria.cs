@@ -106,16 +106,17 @@ public class InterfazCadeteria {
                         Pedidos buscado = cadeteria.BuscarPedido( nroPedido);
                         if(buscado != null){
                             Console.WriteLine("Ingrese el estado del pedido:");
-                            Console.WriteLine("0 - EnProceso");
-                            Console.WriteLine("1 - Entregado");
-                            Console.WriteLine("2 - Cancelado");
+                            Console.WriteLine("1 - EnProceso");
+                            Console.WriteLine("2 - Entregado");
+                            Console.WriteLine("3 - Cancelado");
                             int opcEstado;
-                            while(!int.TryParse(Console.ReadLine(), out opcEstado ) || opcEstado < 0 || opcEstado > 2){
+                            while(!int.TryParse(Console.ReadLine(), out opcEstado ) || opcEstado < 1 || opcEstado > 3){
                                 Console.WriteLine("No se encontro el valor de estado ingresado, intente nuevamente");
-                                Console.WriteLine("0 - EnProceso");
-                                Console.WriteLine("1 - Entregado");
-                                Console.WriteLine("2 - Cancelado");
+                                Console.WriteLine("1 - EnProceso");
+                                Console.WriteLine("2 - Entregado");
+                                Console.WriteLine("3 - Cancelado");
                             }
+                            opcEstado--;
                             Estado nuevoEstado = (Estado)opcEstado;
                             cadeteria.CambiarEstado(buscado, nuevoEstado );
                             continuar = false;

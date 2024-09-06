@@ -64,5 +64,8 @@ namespace SCadeteria;
     return pedidoAsignar;
      
    }
+   public int CantidadDePedidosAsignasdos(){
+    return this.ListadoPedidos.Count;
+   }
 
 }

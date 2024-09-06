@@ -25,7 +25,7 @@ public class AccesoDatos{
                 string []? valores = linea.Split(';');
                 cadeteria.AltaCadete(valores[0], valores[1], valores[2]);
             }
-            cadetes = cadeteria.listadoCadetes;
+            cadetes = cadeteria.ListadoCadetes;
 
         }
         

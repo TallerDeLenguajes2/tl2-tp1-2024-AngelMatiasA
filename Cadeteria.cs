@@ -7,11 +7,11 @@ namespace SCadeteria;
         public int ID { get; }
         public  string Nombre { get; set;}
         public string Direccion{get; set;}
-        public List<Cadete> listadoCadetes {get;set;}
+        public List<Cadete> ListadoCadetes {get;set;}
 
     public Cadeteria (){
         ID++;
-        listadoCadetes = new List<Cadete>();
+        ListadoCadetes = new List<Cadete>();
     }
     public Cadeteria ( string nombre, string Direccion):this()
     {
@@ -22,18 +22,18 @@ namespace SCadeteria;
         ID++;
         this.Nombre = nombre;
         this.Direccion = Direccion;
-        listadoCadetes =listaCadetesCsv;
+        ListadoCadetes =listaCadetesCsv;
     }
         public Cadete AltaCadete ( string nombre, string direccion, string telefono ){
             Cadete nuevoCadete = new Cadete( nombre,  direccion,  telefono );
             if (nuevoCadete !=null)
             {
-                this.listadoCadetes.Add(nuevoCadete);
+                this.ListadoCadetes.Add(nuevoCadete);
             }
             return  nuevoCadete;
         }
         public Cadete AltaPedido ( string pObs, string cNombre, string cDireccion, string cTel, string cDatRef, int idCadete){
-            Cadete cadeteAsignar = this.listadoCadetes.FirstOrDefault(p => p.Id == idCadete);
+            Cadete cadeteAsignar = this.ListadoCadetes.FirstOrDefault(p => p.Id == idCadete);
             if (cadeteAsignar !=null)
             {
                 cadeteAsignar.AltaPedido(  pObs,  cNombre,  cDireccion,  cTel,  cDatRef);
@@ -43,7 +43,7 @@ namespace SCadeteria;
         //primero uso este para chequear si el cadete a asignar existe 
         // y lo guardo en alguna variable cadete en la clase superior a esta
         public Cadete buscarCadetePorId(int id){
-            Cadete cadeteBuscado = this.listadoCadetes.FirstOrDefault(c => c.Id == id);
+            Cadete cadeteBuscado = this.ListadoCadetes.FirstOrDefault(c => c.Id == id);
             if(cadeteBuscado != null){
                 return cadeteBuscado;
             }
@@ -54,7 +54,7 @@ namespace SCadeteria;
         public Cadete BuscarCadeteConElPedido(int nroPedido){
             Cadete cadeteBuscado = null;
             Pedidos pedidoBuscado;
-            foreach (var cadete in this.listadoCadetes)
+            foreach (var cadete in this.ListadoCadetes)
             {
                 pedidoBuscado = cadete.ObtenerPedidoPorId(nroPedido);
                 if (pedidoBuscado != null)
@@ -67,7 +67,7 @@ namespace SCadeteria;
         }
         // public Pedidos BuscarPedido(int nroPedido, Cadete CadeteAsignar){
         //     Pedidos pedidoBuscado;
-        //     foreach (var cadete in this.listadoCadetes)
+        //     foreach (var cadete in this.ListadoCadetes)
         //     {
         //         pedidoBuscado = cadete.ObtenerPedidoPorId(nroPedido);
         //         if (pedidoBuscado != null)
@@ -91,7 +91,7 @@ namespace SCadeteria;
         }
           public Pedidos BuscarPedido(int nroPedido){
             Pedidos pedidoBuscado = null;
-            foreach (var cadete in this.listadoCadetes)
+            foreach (var cadete in this.ListadoCadetes)
             {
                  if (cadete.ListadoPedidos.Count > 0){
                     pedidoBuscado = cadete.ObtenerPedidoPorId(nroPedido);
@@ -105,7 +105,7 @@ namespace SCadeteria;
             return pedidoBuscado;
         }
         public void MostrarCadetes(){
-            foreach (Cadete cadete in this.listadoCadetes)
+            foreach (Cadete cadete in this.ListadoCadetes)
             {
                 Console.WriteLine($"Cadete nro: {cadete.Id}");
                 Console.WriteLine($"Nombre: {cadete.Nombre}");
@@ -115,7 +115,7 @@ namespace SCadeteria;
             }
         }
         public void MostrarPedidos(){
-            foreach (Cadete cadete in this.listadoCadetes)
+            foreach (Cadete cadete in this.ListadoCadetes)
             {
                 if (cadete.ListadoPedidos.Count > 0)
                 {
@@ -136,6 +136,9 @@ namespace SCadeteria;
                 }
                 
             }
+        }
+        public int CantidadDeCadetes (){
+            return this.ListadoCadetes.Count;
         }
 
     }
