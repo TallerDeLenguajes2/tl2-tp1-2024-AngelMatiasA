@@ -16,6 +16,26 @@ public class InformeFinal {
  public void AgregarInfPerALista( InformePersonal nuevoInf){
     this.infGrup.ListInfCadetes.Add(nuevoInf);
  }
+ public void MostrarInforme (){
+    Console.WriteLine($"Informe numero: {Convert.ToString(infGrup.NroDeInforme)}");
+    Console.WriteLine($"Cadeteria Nombre: {cadeteriaInforme.Nombre}");
+    Console.WriteLine($"Envios Realizados: {Convert.ToString(infGrup.TotalDeEnvios)}");
+    Console.WriteLine($"Envios Promedio por Cadete: {Convert.ToString(infGrup.EnvioPromedio)}");
+    Console.WriteLine($"Monto Ganado : ${Convert.ToString(infGrup.MontoGanadoTotal)}");
+    Console.WriteLine($"Informe Personal Por cada Cadete : ");
+    foreach(InformePersonal persInf in infGrup.ListInfCadetes){
+
+    Console.WriteLine($"*********** *************** \n ************************** \n");
+    Console.WriteLine($"Cadete Id: {persInf.IdCadete}");
+    Console.WriteLine($"Cadete Nombre: {persInf.NombreCadete}");
+    Console.WriteLine($"Envios Realizados: {Convert.ToString(persInf.PedidosRealizados)}");
+    Console.WriteLine($"Total Cobrado: ${Convert.ToString(persInf.MontoGanado)}");
+
+    }
+
+
+
+ }
  
 
  public void cargarInforme(){
