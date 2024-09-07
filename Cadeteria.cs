@@ -107,6 +107,7 @@ namespace SCadeteria;
         public void MostrarCadetes(){
             foreach (Cadete cadete in this.ListadoCadetes)
             {
+                Console.WriteLine($"\n***************************** \n");
                 Console.WriteLine($"Cadete nro: {cadete.Id}");
                 Console.WriteLine($"Nombre: {cadete.Nombre}");
                 Console.WriteLine($"Celular: {cadete.Telefono}");
@@ -119,11 +120,11 @@ namespace SCadeteria;
             {
                 if (cadete.ListadoPedidos.Count > 0)
                 {
-                    Console.WriteLine($"Estos son los pedidos del Cadete");
-                    Console.WriteLine($"Numero: {cadete.Id}");
+                    Console.WriteLine($"\n*****************************");
+                    Console.WriteLine($"Pedidos del Cadete numero: {cadete.Id}");
                     Console.WriteLine($"Nombre: {cadete.Nombre}");
                     foreach (Pedidos pedido in cadete.ListadoPedidos){
-                        Console.WriteLine($"Pedido nro: {pedido.Nro}");
+                        Console.WriteLine($" \n ************** Pedido nro: {pedido.Nro} *************** ");
                         Console.WriteLine($"Estado: {pedido.Estado}");
                         Console.WriteLine($"Observacion: {pedido.Observacion}");
                         Console.WriteLine($"Celular del cliente: {pedido.Cliente.Telefono}");

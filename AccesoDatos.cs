@@ -28,12 +28,9 @@ public class AccesoDatos{
             cadetes = cadeteria.ListadoCadetes;
 
         }
-        
-
         return cadetes;
-
-
-    } public Cadeteria cargarCadeteria( string nombreArchivo){
+    } 
+    public Cadeteria cargarCadeteria( string nombreArchivo){
         Cadeteria cadeteria = null;
         StreamReader lectorArchivo = ExisteCsv( nombreArchivo);
         if(lectorArchivo != null){
@@ -51,5 +48,19 @@ public class AccesoDatos{
 
 
     }
+    public void cargarPedidos(Cadeteria cadeteria, string nombreArchivo){
+        StreamReader lectorArchivo = ExisteCsv( nombreArchivo);
+        if(lectorArchivo != null){
+          int id = 0;
+            while(!lectorArchivo.EndOfStream){
+                string linea = lectorArchivo.ReadLine();
+                string []? valores = linea.Split(';');
+                id++;
+                cadeteria.AltaPedido(valores[0], valores[1], valores[2], valores[3], valores[4], id);
+            }
+
+        }
+       
+    } 
 
 }

@@ -12,8 +12,9 @@ public class InterfazCadeteria {
     Cadeteria cadeteria;
     AccesoDatos accesoCsv;   
     int opcion = 0;
-    public void IniciarPrograma(string nomArchCadeteria, string nomArchCadetes ){
+    public void IniciarPrograma(string nomArchCadeteria, string nomArchCadetes, string nomArchPedidos ){
         CargarDatos( nomArchCadeteria,  nomArchCadetes );
+        CargarPedidos(cadeteria, nomArchPedidos);
         do
         {
              Console.WriteLine("ingrese: \n  1) dar de alta pedidos \n " +
@@ -52,7 +53,7 @@ public class InterfazCadeteria {
                     Console.WriteLine("Ingrese el Id del cadete al cual desea asignarle el pedido");
                     int idAsignar;
                     string input = Console.ReadLine();
-                    if (!Int32.TryParse(input, out idAsignar))
+                    if (!int.TryParse(input, out idAsignar))
                     {
                         Console.WriteLine("No se pudo leer el numero ingresado, por favor intente nuevamente  ");
                     }
@@ -72,10 +73,11 @@ public class InterfazCadeteria {
                 continuar = true;
                 do
                 {
+                    int op ;
                     Console.WriteLine("Ingrese el numero del pedido ");
                     
                     string input = Console.ReadLine();
-                    if (!Int32.TryParse(input, out nroPedido))
+                    if (!int.TryParse(input, out nroPedido))
                     {
                         Console.WriteLine("No se pudo leer el numero ingresado, por favor intente nuevamente  ");
                     }
@@ -87,12 +89,23 @@ public class InterfazCadeteria {
                         }
                         else
                         {
-                            Console.WriteLine("No se encontro el cadete, intente nuevamente");
+                            Console.WriteLine("No se encontro el pedido \n Para intentar nuevamente"+
+                            ". presione 1 \n Para volver al menu principal precione 0");
+                            while (!int.TryParse(Console.ReadLine(), out op) || op <0 || op>1){                            
+                                Console.WriteLine("El número ingresado no es correcto, por favor intente nuevamente"+ 
+                                  " \n Para intentar nuevamente"+
+                            ". presione 1 \n Para volver al menu principal precione 0");
+                            }
+                            if(op == 0){continuar =false;}
                         }
                     }
                     
                 } while (continuar);
-                cadeteria.ReasignarPedido(cadeteConPedido, nroPedido, cadeteAsignar);
+                if(cadeteConPedido != null && cadeteAsignar!= null){
+                    cadeteria.ReasignarPedido(cadeteConPedido, nroPedido, cadeteAsignar);
+                    Console.WriteLine($"Se reasigno el pedido con exito desde el cadete {cadeteConPedido.Nombre} "+
+                    $", para el cadete {cadeteAsignar.Nombre}");
+                }
                 
                 break;
             case 3:
@@ -100,7 +113,7 @@ public class InterfazCadeteria {
                     Console.WriteLine("Ingrese el numero del pedido ");
                     
                     string input = Console.ReadLine();
-                    if (!Int32.TryParse(input, out nroPedido))
+                    if (!int.TryParse(input, out nroPedido))
                     {
                         Console.WriteLine("No se pudo leer el numero ingresado, por favor intente nuevamente  ");
                     }
@@ -122,11 +135,19 @@ public class InterfazCadeteria {
                             opcEstado--;
                             Estado nuevoEstado = (Estado)opcEstado;
                             cadeteria.CambiarEstado(buscado, nuevoEstado );
+                             Console.WriteLine($"Se cambio de estado con exito a : {nuevoEstado.ToString()}");
+                            
                             continuar = false;
                         }
                         else
                         {
-                            Console.WriteLine("No se encontro el pedido, intente nuevamente");
+                            int op = -1;
+                            Console.WriteLine("No se encontro el pedido \n Para intentar nuevamente"+
+                            ". presione 1 \n Para volver al menu principal precione 0");
+                            while (!int.TryParse(Console.ReadLine(), out op) || op <0 || op>1){                            
+                                Console.WriteLine("El número ingresado no es correcto, por favor intente nuevamente  ");
+                            }
+                            if(op == 0){continuar =false;}
                         }
                     }
                     
@@ -150,13 +171,13 @@ public class InterfazCadeteria {
 
     private static string[] ObtenerDatosPedido(){
         string [] datosCliente = new string[6];
-         Console.WriteLine("Ingrese el nombre del cliente:");
+        Console.WriteLine("Ingrese la observación del pedido:");
         datosCliente[0] = Console.ReadLine();
 
-        Console.WriteLine("Ingrese la dirección del cliente:");
+         Console.WriteLine("Ingrese el nombre del cliente:");
         datosCliente[1] = Console.ReadLine();
 
-        Console.WriteLine("Ingrese la observación del pedido:");
+        Console.WriteLine("Ingrese la dirección del cliente:");
         datosCliente[2] = Console.ReadLine();
 
         Console.WriteLine("Ingrese el teléfono del cliente:");
@@ -178,6 +199,14 @@ public class InterfazCadeteria {
             Console.WriteLine("no se pudo cargar cadetes, intente de nuevo");
 
         }
+    }
+    public void CargarPedidos(Cadeteria cadeteria, string nomArchPedidos ){
+        accesoCsv = new AccesoDatos();
+        accesoCsv.cargarPedidos(cadeteria, nomArchPedidos);
+       
+            Console.WriteLine("Se cargaron los Pedidos");
+
+        
     }
 
 }
