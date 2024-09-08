@@ -8,10 +8,12 @@ namespace SCadeteria;
         public  string Nombre { get; set;}
         public string Direccion{get; set;}
         public List<Cadete> ListadoCadetes {get;set;}
+        public List<Pedidos> ListadoPedidos {get;set;}
 
     public Cadeteria (){
         ID++;
         ListadoCadetes = new List<Cadete>();
+        ListadoPedidos = new List<Pedidos>();
     }
     public Cadeteria ( string nombre, string Direccion):this()
     {
