@@ -56,7 +56,7 @@ namespace SCadeteria;
             }
             return null;
         }
-        public   Pedidos ObtenerPedidoPorId(int id){
+        public Pedidos ObtenerPedidoPorId(int id){
         Pedidos pedidoAux = this.ListadoPedidos.FirstOrDefault(p => p.Nro == id);
         if (pedidoAux != null)
         {
@@ -82,11 +82,10 @@ namespace SCadeteria;
         // }
      
         //por ultimo utilizo este con el los cadetes obtenidos de los dos metodos anteriores
-        public void ReasignarPedido(Cadete cadeteConPedido, int nroPedido, Cadete cadeteAsignar){
-            // Pedidos pedidoCurrent = cadeteConPedido.ObtenerPedidoPorId(nroPedido);
-            // cadeteConPedido.RemoverPedido(pedidoCurrent);
-            // cadeteAsignar.AsignarPedido(pedidoCurrent);
-            
+        public void AsignarCadeteAPedido(int idCadete, int nroPedido){
+            Pedidos pedBuscado = ObtenerPedidoPorId(nroPedido);
+            pedBuscado.IdCadete = idCadete;
+           
         }
         public void CambiarEstado(Pedidos currentPedi, Estado estado){
            
@@ -127,6 +126,9 @@ namespace SCadeteria;
         }
         public int CantidadDeCadetes (){
             return this.ListadoCadetes.Count;
+        }
+        public int CantidadDePedidos (){
+            return this.ListadoPedidos.Count;
         }
 
     }

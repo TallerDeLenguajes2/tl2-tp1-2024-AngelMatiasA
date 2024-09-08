@@ -18,7 +18,7 @@ public class InterfazCadeteria {
         do
         {
              Console.WriteLine("ingrese: \n  1) dar de alta pedidos \n " +
-            " 2) reasignarlos a cadetes \n 3) Cambiar Estado \n  4) Mostrar Cadetes \n  5) Mostrar Pedidos \n 0)Salir");
+            " 2)Asignar pedido a cadetes \n 3) Cambiar Estado \n  4) Mostrar Cadetes \n  5) Mostrar Pedidos \n 0)Salir");
             opcion =  Convert.ToInt32(Console.ReadLine());
             LeerOpciones(opcion);
             
@@ -43,7 +43,7 @@ public class InterfazCadeteria {
                 break;
             case 2:
                 Cadete cadeteAsignar = null;
-                Cadete cadeteConPedido = null;
+                Pedidos cadeteConPedido = null;
                
                 Pedidos pedido = null;
                 do
@@ -81,8 +81,8 @@ public class InterfazCadeteria {
                     }
                     else
                     {
-                         cadeteConPedido = cadeteria.BuscarCadeteConElPedido(nroPedido);
-                        if(cadeteConPedido != null){
+                         pedido = cadeteria.ObtenerPedidoPorId(nroPedido);
+                        if(pedido != null){
                             continuar = false;
                         }
                         else
@@ -99,10 +99,9 @@ public class InterfazCadeteria {
                     }
                     
                 } while (continuar);
-                if(cadeteConPedido != null && cadeteAsignar!= null){
-                    cadeteria.ReasignarPedido(cadeteConPedido, nroPedido, cadeteAsignar);
-                    Console.WriteLine($"Se reasigno el pedido con exito desde el cadete {cadeteConPedido.Nombre} "+
-                    $", para el cadete {cadeteAsignar.Nombre}");
+                if(pedido != null && cadeteAsignar!= null){
+                    cadeteria.AsignarCadeteAPedido(cadeteAsignar.Id, nroPedido );
+                    Console.WriteLine($"Se asigno el pedido numero {nroPedido} con exito al cadete {cadeteAsignar.Nombre}");
                 }
                 
                 break;
@@ -184,7 +183,7 @@ public class InterfazCadeteria {
         Console.WriteLine("Ingrese datos de referencia del cliente:");
         datosCliente[4] = Console.ReadLine();
           
-          Console.WriteLine("Si posee el numero de cadete ingreselo ahora, de lo contrario ingrese 1:");
+          Console.WriteLine("Si posee el numero de cadete para asignarle ingreselo ahora, de lo contrario ingrese 0:");
         datosCliente[5] = Console.ReadLine();
 
     return (datosCliente);
