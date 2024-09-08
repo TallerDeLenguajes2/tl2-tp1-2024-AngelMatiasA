@@ -34,13 +34,18 @@ namespace SCadeteria;
             }
             return  nuevoCadete;
         }
-        public Cadete AltaPedido ( string pObs, string cNombre, string cDireccion, string cTel, string cDatRef, int idCadete){
-            Cadete cadeteAsignar = this.ListadoCadetes.FirstOrDefault(p => p.Id == idCadete);
-            if (cadeteAsignar !=null)
+        public void AltaPedido ( string pObs, string cNombre, string cDireccion, string cTel, string cDatRef, int idCadete){
+            Pedidos nuevoPedido = new Pedidos(pObs,  cNombre,  cDireccion,  cTel,  cDatRef, idCadete);
+            if (nuevoPedido != null)
             {
-                cadeteAsignar.AltaPedido(  pObs,  cNombre,  cDireccion,  cTel,  cDatRef);
+                
+                this.ListadoPedidos.Add(nuevoPedido);
             }
-            return  cadeteAsignar;
+            else{
+                Console.WriteLine("no se pudo crear el pedido");
+            }
+          
+           
         }
         //primero uso este para chequear si el cadete a asignar existe 
         // y lo guardo en alguna variable cadete en la clase superior a esta
@@ -51,39 +56,36 @@ namespace SCadeteria;
             }
             return null;
         }
+        public   Pedidos ObtenerPedidoPorId(int id){
+        Pedidos pedidoAux = this.ListadoPedidos.FirstOrDefault(p => p.Nro == id);
+        if (pedidoAux != null)
+        {
+            return pedidoAux;
+        } 
+        return null;
+    }
         // aqui busco el cadete que tenga el pedido. Si no existe el pedido, 
         // no lo encuentra al cadete y en la clase superior recibo null y hago el control
-        public Cadete BuscarCadeteConElPedido(int nroPedido){
-            Cadete cadeteBuscado = null;
-            Pedidos pedidoBuscado;
-            foreach (var cadete in this.ListadoCadetes)
-            {
-                pedidoBuscado = cadete.ObtenerPedidoPorId(nroPedido);
-                if (pedidoBuscado != null)
-                {
-                    cadeteBuscado = cadete;
-                    return cadeteBuscado;
-                }
-            }
-            return cadeteBuscado;
-        }
-        // public Pedidos BuscarPedido(int nroPedido, Cadete CadeteAsignar){
+        // public Cadete BuscarCadeteConElPedido(int nroPedido){
+        //     Cadete cadeteBuscado = null;
         //     Pedidos pedidoBuscado;
         //     foreach (var cadete in this.ListadoCadetes)
         //     {
         //         pedidoBuscado = cadete.ObtenerPedidoPorId(nroPedido);
         //         if (pedidoBuscado != null)
         //         {
-        //             return pedidoBuscado;
+        //             cadeteBuscado = cadete;
+        //             return cadeteBuscado;
         //         }
         //     }
-        //     return null;
+        //     return cadeteBuscado;
         // }
+     
         //por ultimo utilizo este con el los cadetes obtenidos de los dos metodos anteriores
         public void ReasignarPedido(Cadete cadeteConPedido, int nroPedido, Cadete cadeteAsignar){
-            Pedidos pedidoCurrent = cadeteConPedido.ObtenerPedidoPorId(nroPedido);
-            cadeteConPedido.RemoverPedido(pedidoCurrent);
-            cadeteAsignar.AsignarPedido(pedidoCurrent);
+            // Pedidos pedidoCurrent = cadeteConPedido.ObtenerPedidoPorId(nroPedido);
+            // cadeteConPedido.RemoverPedido(pedidoCurrent);
+            // cadeteAsignar.AsignarPedido(pedidoCurrent);
             
         }
         public void CambiarEstado(Pedidos currentPedi, Estado estado){
@@ -91,21 +93,7 @@ namespace SCadeteria;
                 currentPedi.Estado = estado;
                 
         }
-          public Pedidos BuscarPedido(int nroPedido){
-            Pedidos pedidoBuscado = null;
-            foreach (var cadete in this.ListadoCadetes)
-            {
-                 if (cadete.ListadoPedidos.Count > 0){
-                    pedidoBuscado = cadete.ObtenerPedidoPorId(nroPedido);
-                    if (pedidoBuscado != null)
-                    {
-                        
-                        return pedidoBuscado;
-                    }
-                 }
-            }
-            return pedidoBuscado;
-        }
+         
         public void MostrarCadetes(){
             foreach (Cadete cadete in this.ListadoCadetes)
             {
@@ -118,27 +106,24 @@ namespace SCadeteria;
             }
         }
         public void MostrarPedidos(){
-            foreach (Cadete cadete in this.ListadoCadetes)
+         
+            if (ListadoPedidos.Count > 0)
             {
-                if (cadete.ListadoPedidos.Count > 0)
-                {
-                    Console.WriteLine($"\n*****************************");
-                    Console.WriteLine($"Pedidos del Cadete numero: {cadete.Id}");
-                    Console.WriteLine($"Nombre: {cadete.Nombre}");
-                    foreach (Pedidos pedido in cadete.ListadoPedidos){
-                        Console.WriteLine($" \n ************** Pedido nro: {pedido.Nro} *************** ");
-                        Console.WriteLine($"Estado: {pedido.Estado}");
-                        Console.WriteLine($"Observacion: {pedido.Observacion}");
-                        Console.WriteLine($"Celular del cliente: {pedido.Cliente.Telefono}");
-                        Console.WriteLine($"Nombre de cliente: {pedido.Cliente.Nombre}");
-                        Console.WriteLine($"Direccion: {pedido.Cliente.Direccion}");
-                        Console.WriteLine($"Datos de referencia de direccion: {pedido.Cliente.DatosReferenciaDireccion}");
+                
+                foreach (Pedidos pedido in ListadoPedidos){
+                    Console.WriteLine($" \n ************** Pedido nro: {pedido.Nro} *************** ");
+                    Console.WriteLine($"Estado: {pedido.Estado}");
+                    Console.WriteLine($"Observacion: {pedido.Observacion}");
+                    Console.WriteLine($"Celular del cliente: {pedido.Cliente.Telefono}");
+                    Console.WriteLine($"Nombre de cliente: {pedido.Cliente.Nombre}");
+                    Console.WriteLine($"Direccion: {pedido.Cliente.Direccion}");
+                    Console.WriteLine($"Datos de referencia de direccion: {pedido.Cliente.DatosReferenciaDireccion}");
 
-                    }
-                    
                 }
                 
             }
+            
+            
         }
         public int CantidadDeCadetes (){
             return this.ListadoCadetes.Count;

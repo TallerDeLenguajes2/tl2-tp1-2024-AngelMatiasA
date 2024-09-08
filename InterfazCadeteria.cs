@@ -37,15 +37,13 @@ public class InterfazCadeteria {
             case 1:
                 string [] datosPedidos = ObtenerDatosPedido();
                 int idCadete = Convert.ToInt32(datosPedidos[5]);
-                Cadete cadeteConPedido = cadeteria.AltaPedido(datosPedidos[0], datosPedidos[1], datosPedidos[2], datosPedidos[3], datosPedidos[4], idCadete);
-                if (cadeteConPedido !=null){
-                    Console.WriteLine($"Se guardo el pedido con el cadete : {cadeteConPedido.Nombre} de id numero: {cadeteConPedido.Id}  ");
-                    break;
-                }
-                Console.WriteLine("No se pudo cargar el pedido.");
+                cadeteria.AltaPedido(datosPedidos[0], datosPedidos[1], datosPedidos[2], datosPedidos[3], datosPedidos[4], idCadete);
+                Console.WriteLine($"Se guardo el pedido  ");
+            
                 break;
             case 2:
-                Cadete cadeteAsignar = null; cadeteConPedido = null;
+                Cadete cadeteAsignar = null;
+                Cadete cadeteConPedido = null;
                
                 Pedidos pedido = null;
                 do

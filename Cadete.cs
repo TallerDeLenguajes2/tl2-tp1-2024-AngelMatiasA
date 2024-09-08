@@ -16,7 +16,7 @@ namespace SCadeteria;
     public string Nombre { get => nombre; set => nombre = value; }
     public string Direccion { get => direccion; set => direccion = value; }
     public string Telefono { get => telefono; set => telefono = value; }
-    public List<Pedidos> ListadoPedidos {get => listadoPedidos; set => listadoPedidos = value;}
+    // public List<Pedidos> ListadoPedidos {get => listadoPedidos; set => listadoPedidos = value;}
     public Cadete()
     { this.id  = nro;
     listadoPedidos = new List<Pedidos>();
@@ -29,6 +29,7 @@ namespace SCadeteria;
         this.telefono = telefono;
         // listadoPedidos = new List<Pedidos>();
     }
+    /*
     public Pedidos AltaPedido(string pObs, string cNombre, string cDireccion, string cTel, string cDatRef ){
         pedidoAux = new Pedidos( pObs,  cNombre,  cDireccion,  cTel,  cDatRef);
         this.listadoPedidos.Add(pedidoAux);
@@ -39,16 +40,9 @@ namespace SCadeteria;
         this.listadoPedidos.Add(pedidoAux);
         return pedidoAux;
     }
+*/
 
-
-    public   Pedidos ObtenerPedidoPorId(int id){
-        pedidoAux = this.listadoPedidos.FirstOrDefault(p => p.Nro == id);
-        if (pedidoAux != null)
-        {
-            return pedidoAux;
-        } 
-        return null;
-    }
+ 
    public Pedidos RemoverPedido ( Pedidos pedidoRemover){
     if(pedidoRemover != null){
         this.listadoPedidos.Remove(pedidoRemover);
@@ -64,8 +58,8 @@ namespace SCadeteria;
     return pedidoAsignar;
      
    }
-   public int CantidadDePedidosAsignasdos(){
-    return this.ListadoPedidos.Count;
-   }
+//    public int CantidadDePedidosAsignasdos(){
+//     return this.ListadoPedidos.Count;
+//    }
 
 }
