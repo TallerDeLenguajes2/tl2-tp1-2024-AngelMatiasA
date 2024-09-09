@@ -1,0 +1,77 @@
+[
+    {
+        "nombre": "Carlos Gómez",
+        "direccion": "Calle Libertad 1234",
+        "telefono": "3815123456"
+    },
+    {
+        "nombre": "Ana Martínez",
+        "direccion": "Avenida Roca 5678",
+        "telefono": "3815234567"
+    },
+    {
+        "nombre": "Luis Fernández",
+        "direccion": "Calle San Martín 9101",
+        "telefono": "3815345678"
+    },
+    {
+        "nombre": "María López",
+        "direccion": "Avenida Belgrano 1122",
+        "telefono": "3815456789"
+    },
+    {
+        "nombre": "Jorge Pérez",
+        "direccion": "Calle Mitre 3344",
+        "telefono": "3815567890"
+    },
+    {
+        "nombre": "Laura Sánchez",
+        "direccion": "Avenida Sarmiento 5566",
+        "telefono": "3815678901"
+    },
+    {
+        "nombre": "Pedro González",
+        "direccion": "Calle Rivadavia 7788",
+        "telefono": "3815789012"
+    },
+    {
+        "nombre": "Sofía Ramírez",
+        "direccion": "Avenida Alem 9900",
+        "telefono": "3815890123"
+    },
+    {
+        "nombre": "Lucas Torres",
+        "direccion": "Calle Moreno 1112",
+        "telefono": "3815901234"
+    },
+    {
+        "nombre": "Miguel Díaz",
+        "direccion": "Avenida Colón 1314",
+        "telefono": "3816012345"
+    },
+    {
+        "nombre": "Martín Castro",
+        "direccion": "Calle Lavalle 1516",
+        "telefono": "3816123456"
+    },
+    {
+        "nombre": "Rosa Vázquez",
+        "direccion": "Avenida San Juan 1718",
+        "telefono": "3816234567"
+    },
+    {
+        "nombre": "Elena Ruiz",
+        "direccion": "Calle Tucumán 1920",
+        "telefono": "3816345678"
+    },
+    {
+        "nombre": "David Gómez",
+        "direccion": "Avenida Córdoba 2122",
+        "telefono": "3816456789"
+    },
+    {
+        "nombre": "Julieta Fernández",
+        "direccion": "Calle Mendoza 2324",
+        "telefono": "3816567890"
+    }
+]
