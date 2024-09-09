@@ -24,7 +24,7 @@ public abstract class AccesoADatos{
     }
     
     public abstract Cadeteria cargarCadeteria( string nombreArchivo);
-    public abstract Cadeteria cargarCadetes( string nombreArchivo);
+    public abstract List<Cadete> cargarCadetes( string nombreArchivo);
    
 
 }

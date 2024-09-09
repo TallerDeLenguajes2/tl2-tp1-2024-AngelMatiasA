@@ -9,7 +9,7 @@ namespace SCadeteria;
         private string nombre;
         private string direccion;
         private string telefono;
-        private List<Pedidos> listadoPedidos;
+        // private List<Pedidos> listadoPedidos;
         private  Pedidos? pedidoAux;
 
     public int Id {get => id;}
@@ -19,7 +19,7 @@ namespace SCadeteria;
     // public List<Pedidos> ListadoPedidos {get => listadoPedidos; set => listadoPedidos = value;}
     public Cadete()
     { this.id  = nro;
-    listadoPedidos = new List<Pedidos>();
+    // listadoPedidos = new List<Pedidos>();
         nro++;
     }
     public Cadete( string nombre, string direccion, string telefono ) :this()
@@ -43,21 +43,21 @@ namespace SCadeteria;
 */
 
  
-   public Pedidos RemoverPedido ( Pedidos pedidoRemover){
-    if(pedidoRemover != null){
-        this.listadoPedidos.Remove(pedidoRemover);
-    }
+//    public Pedidos RemoverPedido ( Pedidos pedidoRemover){
+//     if(pedidoRemover != null){
+//         this.listadoPedidos.Remove(pedidoRemover);
+//     }
 
-    return pedidoRemover;
-   }
-   public Pedidos AsignarPedido(Pedidos pedidoAsignar){
+//     return pedidoRemover;
+//    }
+//    public Pedidos AsignarPedido(Pedidos pedidoAsignar){
 
-    if(pedidoAsignar != null){
-     this.listadoPedidos.Add(pedidoAsignar);
-    }
-    return pedidoAsignar;
+//     if(pedidoAsignar != null){
+//      this.listadoPedidos.Add(pedidoAsignar);
+//     }
+//     return pedidoAsignar;
      
-   }
+//    }
 //    public int CantidadDePedidosAsignasdos(){
 //     return this.ListadoPedidos.Count;
 //    }

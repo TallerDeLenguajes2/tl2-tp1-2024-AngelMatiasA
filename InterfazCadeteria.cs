@@ -192,9 +192,11 @@ public class InterfazCadeteria {
     public void CargarDatos(string nomArchCadeteria, string nomArchCadetes ){
         accesoCsv = new AccesoCSV();
         cadeteria = accesoCsv.cargarCadeteria(nomArchCadeteria);
-        if(accesoCsv.cargarCadetes( cadeteria, nomArchCadetes) == null){
+        if(accesoCsv.cargarCadetes( nomArchCadetes) != null){
+        cadeteria.ListadoCadetes = accesoCsv.cargarCadetes(nomArchCadetes);
+        }else
+        {
             Console.WriteLine("no se pudo cargar cadetes, intente de nuevo");
-
         }
     }
     public void CargarPedidos(Cadeteria cadeteria, string nomArchPedidos ){

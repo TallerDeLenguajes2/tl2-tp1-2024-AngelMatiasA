@@ -4,7 +4,7 @@ using System.IO;
 using SCadeteria;
 
 namespace SCadeteria;
-public class AccesoCSV{
+public class AccesoCSV:AccesoADatos{
     
     public AccesoCSV(){
 
@@ -15,34 +15,35 @@ public class AccesoCSV{
         return  archivoCsv;
 
     }
-    public List<Cadete> cargarCadetes(Cadeteria cadeteria, string nombreArchivo){
+    public override List<Cadete> cargarCadetes( string nombreArchivo){
         List<Cadete> cadetes = null;
-        StreamReader lectorArchivo = ExisteCsv( nombreArchivo);
-        if(lectorArchivo != null){
-            string TiTuloFilasCsv = lectorArchivo.ReadLine();
-            while(!lectorArchivo.EndOfStream){
-                string linea = lectorArchivo.ReadLine();
+        if(!ArchivoCargado(nombreArchivo)){
+            return cadetes;
+        }
+        cadetes = new List<Cadete>();
+        using( StreamReader lector = new StreamReader (nombreArchivo)){
+            var primeraLinea = lector.ReadLine();
+            while( !lector.EndOfStream){
+                string linea = lector.ReadLine();
                 string []? valores = linea.Split(';');
-                cadeteria.AltaCadete(valores[0], valores[1], valores[2]);
+                Cadete nuevoCadete = new Cadete (valores[0], valores[1], valores[2]);
+                cadetes.Add(nuevoCadete);
             }
-            cadetes = cadeteria.ListadoCadetes;
-
         }
         return cadetes;
     } 
-    public Cadeteria cargarCadeteria( string nombreArchivo){
+    public override Cadeteria cargarCadeteria( string nombreArchivo){
         Cadeteria cadeteria = null;
-        StreamReader lectorArchivo = ExisteCsv( nombreArchivo);
-        if(lectorArchivo != null){
-            string TiTuloFilasCsv = lectorArchivo.ReadLine();
+        if(!ArchivoCargado(nombreArchivo)) return cadeteria;
+        using(StreamReader lector = new StreamReader(nombreArchivo)){
+            string TiTuloFilasCsv = lector.ReadLine();
             
-            string linea = lectorArchivo.ReadLine();
+            string linea = lector.ReadLine();
             string []? valores = linea.Split(';');
             cadeteria = new Cadeteria(valores[0], valores[1]);
-          
 
         }
-        
+    
 
         return cadeteria;
 
@@ -61,6 +62,7 @@ public class AccesoCSV{
 
         }
        
-    } 
+    }
 
+  
 }
