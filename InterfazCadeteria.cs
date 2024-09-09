@@ -10,7 +10,7 @@ public class InterfazCadeteria {
     static bool  continuar = true;
     InformeFinal informe;
     Cadeteria cadeteria;
-    AccesoDatos accesoCsv;   
+    AccesoCSV accesoCsv;   
     int opcion = 0;
     public void IniciarPrograma(string nomArchCadeteria, string nomArchCadetes, string nomArchPedidos ){
         CargarDatos( nomArchCadeteria,  nomArchCadetes );
@@ -190,7 +190,7 @@ public class InterfazCadeteria {
     }
 
     public void CargarDatos(string nomArchCadeteria, string nomArchCadetes ){
-        accesoCsv = new AccesoDatos();
+        accesoCsv = new AccesoCSV();
         cadeteria = accesoCsv.cargarCadeteria(nomArchCadeteria);
         if(accesoCsv.cargarCadetes( cadeteria, nomArchCadetes) == null){
             Console.WriteLine("no se pudo cargar cadetes, intente de nuevo");
@@ -198,7 +198,7 @@ public class InterfazCadeteria {
         }
     }
     public void CargarPedidos(Cadeteria cadeteria, string nomArchPedidos ){
-        accesoCsv = new AccesoDatos();
+        accesoCsv = new AccesoCSV();
         accesoCsv.cargarPedidos(cadeteria, nomArchPedidos);
        
             Console.WriteLine("Se cargaron los Pedidos");

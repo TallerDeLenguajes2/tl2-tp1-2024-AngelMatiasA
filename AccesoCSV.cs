@@ -4,9 +4,9 @@ using System.IO;
 using SCadeteria;
 
 namespace SCadeteria;
-public class AccesoDatos{
+public class AccesoCSV{
     
-    public AccesoDatos(){
+    public AccesoCSV(){
 
     }
     public static StreamReader ExisteCsv(string nombreArchivo){
