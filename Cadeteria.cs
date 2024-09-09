@@ -4,6 +4,8 @@ namespace SCadeteria;
 
     public class Cadeteria
     {
+        private const double PrecioPorViaje = 500;
+
         public int ID { get; }
         public  string Nombre { get; set;}
         public string Direccion{get; set;}
@@ -129,6 +131,17 @@ namespace SCadeteria;
         }
         public int CantidadDePedidos (){
             return this.ListadoPedidos.Count;
+        }
+        public int PedidosRealizados(int idCadete){
+              int realizados =  ListadoPedidos.Where
+           (p => p.IdCadete == idCadete && p.Estado == Estado.Entregado).Count();
+           return realizados;
+        }
+        public double JornalACobrar(int idCadete){
+            int realizados = PedidosRealizados(idCadete);
+         
+
+            return realizados * PrecioPorViaje ;
         }
 
     }
