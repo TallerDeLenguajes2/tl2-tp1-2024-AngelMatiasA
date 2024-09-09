@@ -48,18 +48,9 @@ public class InformeFinal {
         nuevoInfo = new InformePersonal(); 
         nuevoInfo.IdCadete = cadete.Id;
         nuevoInfo.NombreCadete = cadete.Nombre;
-        nuevoInfo.PedidosRealizados= 0;
-        if (cadete.CantidadDePedidosAsignasdos()>0)
-        {
-            foreach (Pedidos pedidoAsign in cadete.ListadoPedidos)
-            {
-                if( pedidoAsign.Estado == Estado.Entregado){
-                    nuevoInfo.PedidosRealizados++;
-                    infGrup.TotalDeEnvios++;
-                }
-            }
-        }
-        nuevoInfo.MontoGanado = nuevoInfo.PedidosRealizados * PrecioPorViaje;
+        nuevoInfo.PedidosRealizados= cadeteriaInforme.PedidosRealizados(cadete.Id);
+        infGrup.TotalDeEnvios += nuevoInfo.PedidosRealizados;
+        nuevoInfo.MontoGanado = cadeteriaInforme.JornalACobrar(cadete.Id);
         infGrup.MontoGanadoTotal += nuevoInfo.MontoGanado ;
            
             AgregarInfPerALista(nuevoInfo);
