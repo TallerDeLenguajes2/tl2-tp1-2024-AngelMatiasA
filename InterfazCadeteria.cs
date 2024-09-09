@@ -116,7 +116,7 @@ public class InterfazCadeteria {
                     }
                     else
                     {
-                        Pedidos buscado = cadeteria.BuscarPedido( nroPedido);
+                        Pedidos buscado = cadeteria.ObtenerPedidoPorId( nroPedido);
                         if(buscado != null){
                             Console.WriteLine("Ingrese el estado del pedido:");
                             Console.WriteLine("1 - EnProceso");
