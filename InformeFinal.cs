@@ -25,7 +25,7 @@ public class InformeFinal {
     Console.WriteLine($"Informe Personal Por cada Cadete : ");
     foreach(InformePersonal persInf in infGrup.ListInfCadetes){
 
-    Console.WriteLine($"*********** *************** \n ************************** \n");
+    Console.WriteLine($"\n***************************  ");
     Console.WriteLine($"Cadete Id: {persInf.IdCadete}");
     Console.WriteLine($"Cadete Nombre: {persInf.NombreCadete}");
     Console.WriteLine($"Envios Realizados: {Convert.ToString(persInf.PedidosRealizados)}");
