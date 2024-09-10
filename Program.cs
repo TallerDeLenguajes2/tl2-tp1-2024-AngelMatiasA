@@ -9,6 +9,6 @@ namespace Cadeteria;
         {
             Console.WriteLine("Hello World!");
             InterfazCadeteria interfazCadeteria = new InterfazCadeteria();
-            interfazCadeteria.IniciarPrograma("CadeteriaDatos.csv","Cadetes.csv","Pedidos.csv");
+            interfazCadeteria.IniciarPrograma("Pedidos.csv");
         }
     }

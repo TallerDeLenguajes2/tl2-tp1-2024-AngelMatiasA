@@ -5,15 +5,20 @@ using SCadeteria;
 
 namespace SCadeteria;
 public class InterfazCadeteria {
+    const string CadeteriaJson = "Cadeteria.json";
+    const string CadetesJson = "Cadetes.json";
+    const string CadetesCSV = "CadeteriaDatos.csv";
+    const string CadeteriaCSV = "Cadetes.csv";
     int nroPedido = 0;
     bool fin = false;
     static bool  continuar = true;
     InformeFinal informe;
     Cadeteria cadeteria;
     AccesoCSV accesoCsv;   
+    AccesoJSON accesoJson;   
     int opcion = 0;
-    public void IniciarPrograma(string nomArchCadeteria, string nomArchCadetes, string nomArchPedidos ){
-        CargarDatos( nomArchCadeteria,  nomArchCadetes );
+    public void IniciarPrograma( string nomArchPedidos ){
+        CargarDatos();
         CargarPedidos(cadeteria, nomArchPedidos);
         do
         {
@@ -189,11 +194,43 @@ public class InterfazCadeteria {
     return (datosCliente);
     }
 
-    public void CargarDatos(string nomArchCadeteria, string nomArchCadetes ){
+    public void CargarDatosConCSV( ){
         accesoCsv = new AccesoCSV();
-        cadeteria = accesoCsv.cargarCadeteria(nomArchCadeteria);
-        if(accesoCsv.cargarCadetes( nomArchCadetes) != null){
-        cadeteria.ListadoCadetes = accesoCsv.cargarCadetes(nomArchCadetes);
+        cadeteria = accesoCsv.cargarCadeteria(CadeteriaCSV);
+        if(accesoCsv.cargarCadetes( CadeteriaCSV) != null){
+        cadeteria.ListadoCadetes = accesoCsv.cargarCadetes(CadeteriaCSV);
+        }else
+        {
+            Console.WriteLine("no se pudo cargar cadetes, intente de nuevo");
+        }
+    }
+   
+   public void CargarDatos(){
+    int op ; 
+    Console.WriteLine("Ingrese 1 si quiere cargar los datos desde csv o 2 desde el json  ");
+     while (!int.TryParse(Console.ReadLine(), out op) || op <1 || op>2){                            
+        Console.WriteLine("El número ingresado no es correcto, por favor intente nuevamente  ");
+    }
+    if(op == 1){
+       
+    
+        CargarDatosConCSV();
+    }
+    else {
+        CargarDatosConJSON();
+    }
+    
+   }
+
+    public void CargarDatosConJSON( ){
+        accesoJson = new AccesoJSON();
+        cadeteria = accesoJson.cargarCadeteria(CadeteriaJson);
+        if(cadeteria == null){
+            Console.WriteLine("no se pudo cargar los datos de la cadeteria.");
+            
+        }
+        if(accesoJson.cargarCadetes( CadetesJson) != null){
+        cadeteria.ListadoCadetes = accesoJson.cargarCadetes(CadetesJson);
         }else
         {
             Console.WriteLine("no se pudo cargar cadetes, intente de nuevo");

@@ -9,6 +9,7 @@ namespace SCadeteria;
         public int ID { get; }
         public  string Nombre { get; set;}
         public string Direccion{get; set;}
+         public string Telefono{get; set;}
         public List<Cadete> ListadoCadetes {get;set;}
         public List<Pedidos> ListadoPedidos {get;set;}
 
@@ -17,17 +18,12 @@ namespace SCadeteria;
         ListadoCadetes = new List<Cadete>();
         ListadoPedidos = new List<Pedidos>();
     }
-    public Cadeteria ( string nombre, string Direccion):this()
+    public Cadeteria ( string nombre, string telefono):this()
     {
         this.Nombre = nombre;
-        this.Direccion = Direccion;
+        this.Telefono = telefono;
     }
-    public Cadeteria (List<Cadete> listaCadetesCsv, string nombre, string Direccion){
-        ID++;
-        this.Nombre = nombre;
-        this.Direccion = Direccion;
-        ListadoCadetes =listaCadetesCsv;
-    }
+   
         public Cadete AltaCadete ( string nombre, string direccion, string telefono ){
             Cadete nuevoCadete = new Cadete( nombre,  direccion,  telefono );
             if (nuevoCadete !=null)

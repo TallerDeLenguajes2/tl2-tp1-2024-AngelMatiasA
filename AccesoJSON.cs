@@ -5,17 +5,22 @@ namespace SCadeteria;
 public class AccesoJSON : AccesoADatos
 {
     public override Cadeteria cargarCadeteria(string nombreArchivo)
+{
+    Cadeteria cadeteria = null;
+    if (!ArchivoCargado(nombreArchivo)) return cadeteria;
+
+    using (var lector = new StreamReader(nombreArchivo))
     {
-        Cadeteria cadeteria = null; 
-        if(!ArchivoCargado(nombreArchivo)) return cadeteria;
-        using(var lector = new StreamReader(nombreArchivo))
-            {
-                var json = lector.ReadToEnd(); 
-                cadeteria = JsonSerializer.Deserialize<Cadeteria>(json);
-            }
-    
-        return cadeteria;
+        var json = lector.ReadToEnd();
+        if (!string.IsNullOrEmpty(json))
+        {
+            cadeteria = JsonSerializer.Deserialize<Cadeteria>(json);
+        }
     }
+
+    return cadeteria;
+}
+
 
     public override List<Cadete> cargarCadetes(string nombreArchivo)
     {
