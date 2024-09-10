@@ -136,7 +136,8 @@ public class InterfazCadeteria {
                             }
                             opcEstado--;
                             Estado nuevoEstado = (Estado)opcEstado;
-                            cadeteria.CambiarEstado(buscado, nuevoEstado );
+                            // cadeteria.CambiarEstado(buscado, nuevoEstado );
+                            cadeteria.CambiarEstado(nroPedido, opcEstado );
                              Console.WriteLine($"Se cambio de estado con exito a : {nuevoEstado.ToString()}");
                             
                             continuar = false;
@@ -156,10 +157,10 @@ public class InterfazCadeteria {
                 } while (continuar);
                 break;
             case 4:
-                cadeteria.MostrarCadetes();
+                MostrarCadetes();
                 break;
             case 5:
-                cadeteria.MostrarPedidos();
+                MostrarPedidos();
                 break;
 
                 
@@ -244,5 +245,45 @@ public class InterfazCadeteria {
 
         
     }
+
+       public void MostrarCadetes(){
+            foreach (Cadete cadete in cadeteria.MostrarCadetes())
+            {
+                Console.WriteLine($"\n************************* \n");
+                Console.WriteLine($"Cadete nro: {cadete.Id}");
+                Console.WriteLine($"Nombre: {cadete.Nombre}");
+                Console.WriteLine($"Celular: {cadete.Telefono}");
+                Console.WriteLine($"Direccion: {cadete.Direccion}");
+                
+            }
+        }
+          public void MostrarPedidos(){
+            List<Pedidos> listadoPedidos = cadeteria.MostrarPedidos();
+         
+            if (listadoPedidos.Count > 0)
+            {
+                
+                foreach (Pedidos pedido in listadoPedidos){
+                    Console.WriteLine($" \n ************** Pedido nro: {pedido.Nro} *************** ");
+                    Console.WriteLine($"Estado: {pedido.Estado}");
+                    Console.WriteLine($"Observacion: {pedido.Observacion}");
+                    Console.WriteLine($"Celular del cliente: {pedido.Cliente.Telefono}");
+                    Console.WriteLine($"Nombre de cliente: {pedido.Cliente.Nombre}");
+                    Console.WriteLine($"Direccion: {pedido.Cliente.Direccion}");
+                    Console.WriteLine($"Datos de referencia de direccion: {pedido.Cliente.DatosReferenciaDireccion}");
+                    if(pedido.IdCadete >0){
+                        Console.WriteLine($"Este Pedido le pertenece al cadete de id: {pedido.IdCadete}");
+
+                    }else{
+                        Console.WriteLine($"Pedido sin asignar");
+
+                    }
+
+                }
+                
+            }
+            
+            
+        }
 
 }

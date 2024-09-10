@@ -85,50 +85,27 @@ namespace SCadeteria;
             pedBuscado.IdCadete = idCadete;
            
         }
-        public void CambiarEstado(Pedidos currentPedi, Estado estado){
+        //no recibe datos primitivos por eso lo cambio para el tp3
+        // public void CambiarEstado(Pedidos currentPedi, Estado estado){
            
-                currentPedi.Estado = estado;
+        //         currentPedi.Estado = estado;
+                
+        // }
+         public void CambiarEstado(int idPedido, int estado){
+            Pedidos pedidoCambiar = ObtenerPedidoPorId(idPedido);
+            pedidoCambiar.Estado = (Estado)estado;
                 
         }
          
-        public void MostrarCadetes(){
-            foreach (Cadete cadete in this.ListadoCadetes)
-            {
-                Console.WriteLine($"\n************************* \n");
-                Console.WriteLine($"Cadete nro: {cadete.Id}");
-                Console.WriteLine($"Nombre: {cadete.Nombre}");
-                Console.WriteLine($"Celular: {cadete.Telefono}");
-                Console.WriteLine($"Direccion: {cadete.Direccion}");
-                
-            }
+        public List<Cadete> MostrarCadetes(){
+            return this.ListadoCadetes;
+          
         }
-        public void MostrarPedidos(){
-         
-            if (ListadoPedidos.Count > 0)
-            {
-                
-                foreach (Pedidos pedido in ListadoPedidos){
-                    Console.WriteLine($" \n ************** Pedido nro: {pedido.Nro} *************** ");
-                    Console.WriteLine($"Estado: {pedido.Estado}");
-                    Console.WriteLine($"Observacion: {pedido.Observacion}");
-                    Console.WriteLine($"Celular del cliente: {pedido.Cliente.Telefono}");
-                    Console.WriteLine($"Nombre de cliente: {pedido.Cliente.Nombre}");
-                    Console.WriteLine($"Direccion: {pedido.Cliente.Direccion}");
-                    Console.WriteLine($"Datos de referencia de direccion: {pedido.Cliente.DatosReferenciaDireccion}");
-                    if(pedido.IdCadete >0){
-                        Console.WriteLine($"Este Pedido le pertenece al cadete de id: {pedido.IdCadete}");
+        public List<Pedidos> MostrarPedidos(){
+            return this.ListadoPedidos;
 
-                    }else{
-                        Console.WriteLine($"Pedido sin asignar");
-
-                    }
-
-                }
-                
-            }
-            
-            
         }
+      
         public int CantidadDeCadetes (){
             return this.ListadoCadetes.Count;
         }
